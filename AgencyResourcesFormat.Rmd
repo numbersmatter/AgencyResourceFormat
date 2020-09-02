@@ -1,0 +1,56 @@
+---
+title: "Format Data for Agency Resources"
+output: html_notebook
+---
+
+
+```{r message=FALSE}
+library(tidyverse)
+library(config)
+library(googlesheets4)
+library(httr)
+```
+
+
+IMPORTANT!!!! Must run gs4_auth() in console to get credentials to work!
+
+
+# Purpose
+
+The purpose of this notebook to format the data received from the Community Alignment Specialist for use with the COVID Agency finder shiny app. 
+
+
+## Import Data
+
+Import the data exactly as it was from the google sheet.
+
+IMPORTANT!!!! Must run gs4_auth() in console to get credentials to work. If necessary, log in to Google account and an Authentication code will be provided to copy and pasted into console. 
+
+
+```{r}
+# helper variables
+
+# Google Sheet
+demo_google_sheet <- "https://docs.google.com/spreadsheets/d/1wXGAnRVd1vVQAit0ocTp3Ocqm1ipW51sA6lxe2iNqOg/"
+
+# Service Type Tab Name
+serviceTypeSheet <- "Service Type Info"
+
+# Service Domain Tab Name
+domainSheet <- "Service Domain"
+
+# Service FactorTab Name
+factorSheet <- "service Factors"
+
+
+```
+
+
+
+
+
+```{r}
+demo_ServiceType <- read_sheet(demo_google_sheet, sheet = serviceTypeSheet)
+
+#"https://docs.google.com/spreadsheets/d/1wXGAnRVd1vVQAit0ocTp3Ocqm1ipW51sA6lxe2iNqOg/edit#gid=545033575"
+```
