@@ -15,9 +15,12 @@ program.id <- "Pgm0008"
 filter junction table for the program
 
 ```{r}
-programTypes <- jun_Type_Program.df %>% 
-  filter(`Program ID`==program.id) %>% 
-  left_join(Type.df, by = 'Service Type ID')
+programTypes1 <- jun_Type_Program.df
+
+programTypes2 <-  filter(programTypes1,`Program ID`==program.id)
+
+programTypes3 <- left_join(programTypes2,Type.df, by = 'Service Type ID' )
+
 
 ```
 
@@ -73,7 +76,7 @@ test_Programs <- programs.df
 ```{r}
 test_v_list <-Vectorize(test_Type_List)
 ```
-
+vectorize a function: https://deanattali.com/blog/mutate-non-vectorized/
 
 
 ```{r}
