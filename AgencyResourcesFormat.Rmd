@@ -57,6 +57,26 @@ juncTypeProgramSheet <- "Service Type and Program"
 
 ```
 
+```{r}
+# Helper Functions
+
+Type_List <- function(progID){
+  df.type = jun_Type_Program.df
+  
+  df.type <- df.type %>% 
+    filter(`Program ID`== progID) %>% 
+    left_join(Type.df, by = 'Service Type ID')
+  
+  a = as.vector(df.type$`Service Type`)
+  
+  
+ return( paste0(a, collapse = ";  "))
+}
+
+Type_List_Vectorized <- Vectorize(Type_List)
+```
+
+
 
 
 
@@ -79,3 +99,30 @@ jun_Type_Program.df <-  read_sheet(demo_google_sheet, sheet = juncTypeProgramShe
 
 
 ```
+
+
+
+
+
+# Create list of Types associated with each program
+
+
+This code will accept a program ID and create a list of Service types.
+
+```{r}
+
+programs_full <- programs.df
+
+
+programs_full <- programs_full %>% 
+  mutate(ServiceTypes = Type_List_Vectorized(programs_full$`Program ID`))
+
+
+
+
+```
+
+
+
+
+

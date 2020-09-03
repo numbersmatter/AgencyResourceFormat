@@ -1,0 +1,97 @@
+---
+title: "Development of Service Type Function"
+output: html_notebook
+---
+
+
+
+
+```{r}
+program.id <- "Pgm0008"
+```
+
+
+
+filter junction table for the program
+
+```{r}
+programTypes <- jun_Type_Program.df %>% 
+  filter(`Program ID`==program.id) %>% 
+  left_join(Type.df, by = 'Service Type ID')
+
+```
+
+
+
+create vector of service type names
+
+```{r}
+programTypes$`Service Type`
+```
+
+```{r}
+paste(programTypes$`Service Type`, collapse = ", ")
+```
+
+
+Define a function that automates the above code.
+
+```{r}
+test_Type_List <- function(progID){
+  df.type = jun_Type_Program.df
+  
+  df.type <- df.type %>% 
+    filter(`Program ID`== progID) %>% 
+    left_join(Type.df, by = 'Service Type ID')
+  
+  a = as.vector(df.type$`Service Type`)
+  
+  
+ return( paste0(a, collapse = ";  "))
+}
+```
+
+
+
+
+
+```{r}
+test_Type_List('Pgm0008')
+```
+
+
+
+```{r}
+paste0(test_Type_List('Pgm0004'), collapse = ", ")
+```
+
+```{r}
+test_Programs <- programs.df
+```
+
+
+```{r}
+test_v_list <-Vectorize(test_Type_List)
+```
+
+
+
+```{r}
+
+
+test_Programs <- test_Programs %>% 
+  mutate(ServiceTypes = test_v_list(test_Programs$`Program ID`))
+```
+
+
+
+```{r}
+test_Programs2 <- test_Programs
+
+test_Programs2 <- test_Programs2 %>% 
+  mutate(ServiceTypes = str_c(ServiceTypes))
+```
+
+
+
+
