@@ -34,13 +34,25 @@ IMPORTANT!!!! Must run gs4_auth() in console to get credentials to work. If nece
 demo_google_sheet <- "https://docs.google.com/spreadsheets/d/1wXGAnRVd1vVQAit0ocTp3Ocqm1ipW51sA6lxe2iNqOg/"
 
 # Service Type Tab Name
-serviceTypeSheet <- "Service Type Info"
+typeSheet <- "Service Type Info"
 
 # Service Domain Tab Name
 domainSheet <- "Service Domain"
 
-# Service FactorTab Name
-factorSheet <- "service Factors"
+# Service Factor Tab Name
+factorSheet <- "Service Factors"
+
+# Programs
+programsSheet <- "Program"
+
+# Organizations
+orgSheet <- "Organization"
+
+# Junction Factors and Type
+juncFactorsTypeSheet <- "Factors and Type"
+
+# Junction Type and Program
+juncTypeProgramSheet <- "Service Type and Program"
 
 
 ```
@@ -50,7 +62,20 @@ factorSheet <- "service Factors"
 
 
 ```{r}
-demo_ServiceType <- read_sheet(demo_google_sheet, sheet = serviceTypeSheet)
+#import tables
+Type.df <- read_sheet(demo_google_sheet, sheet = typeSheet)
 
-#"https://docs.google.com/spreadsheets/d/1wXGAnRVd1vVQAit0ocTp3Ocqm1ipW51sA6lxe2iNqOg/edit#gid=545033575"
+Factor.df <-  read_sheet(demo_google_sheet, sheet = factorSheet)
+
+domain.df <-  read_sheet(demo_google_sheet, sheet = domainSheet)
+
+programs.df <-  read_sheet(demo_google_sheet, sheet = programsSheet)
+
+organizations.df <-  read_sheet(demo_google_sheet, sheet = orgSheet)
+
+jun_Factor_Type.df <- read_sheet(demo_google_sheet, sheet = juncFactorsTypeSheet)
+
+jun_Type_Program.df <-  read_sheet(demo_google_sheet, sheet = juncTypeProgramSheet)
+
+
 ```
