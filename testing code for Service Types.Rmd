@@ -29,11 +29,11 @@ programTypes3 <- left_join(programTypes2,Type.df, by = 'Service Type ID' )
 create vector of service type names
 
 ```{r}
-programTypes$`Service Type`
+programTypes3$`Service Type`
 ```
 
 ```{r}
-paste(programTypes$`Service Type`, collapse = ", ")
+paste(programTypes3$`Service Type`, collapse = ", ")
 ```
 
 
@@ -59,7 +59,7 @@ test_Type_List <- function(progID){
 
 
 ```{r}
-test_Type_List('Pgm0008')
+test_Type_List('Pgm0004')
 ```
 
 
@@ -94,7 +94,6 @@ test_Programs2 <- test_Programs
 test_Programs2 <- test_Programs2 %>% 
   mutate(ServiceTypes = str_c(ServiceTypes))
 ```
-
 
 
 
